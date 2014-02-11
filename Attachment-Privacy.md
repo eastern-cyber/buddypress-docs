@@ -11,3 +11,5 @@ If you're running nginx, directory-specific access settings are configured in a 
     }
 
 This rule assumes that nginx sees your WP installation at `/`. If this is not the case, you may have to adjust these paths.
+
+*Performance note*: This modification will force all Doc Attachment downloads to pass through WordPress, instead of being served by nginx, even if the associated Doc is public. On very high-traffic sites, this could cause performance issues. If you do not have any non-public Docs, you may consider skipping the directive suggested above, and allowing nginx to serve all Docs Attachments directly.
