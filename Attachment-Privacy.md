@@ -2,6 +2,12 @@ _Doc Attachments_ inherit the privacy levels of the Docs that they are attached 
 
 BuddyPress Docs attempts to take additional steps to ensure that your Docs cannot be accessed directly by those who might guess the URLs. Depending on your server setup, you may have to take some additional manual steps to ensure 100% attachment privacy.
 
+## Apache
+
+On Apache installations, BuddyPress Docs attempts to protect attachments on a doc-by-doc basis. This means that attachments to private Docs will be served through BuddyPress - ensuring proper authorization - while attachments to public Docs will be served directly by Apache - ensuring the lowest possible overhead.
+
+In order for BuddyPress Docs to protect attachments in this way, `AllowOverride` must allow for subdirectory-specific rewrites. The vast majority of WP installations will have this setting enabled by default. For more information, see <a href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache's documentation for `AllowOverride`</a>.
+
 ## nginx
 
 If you're running nginx, directory-specific access settings are configured in a global configuration file (often `/etc/nginx/nginx.conf`, but possibly a sub-config file that is specific to your site). To prevent direct access to Docs attachments, use a directive like the following:
