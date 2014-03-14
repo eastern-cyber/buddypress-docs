@@ -13,3 +13,19 @@ If you're running nginx, directory-specific access settings are configured in a 
 This rule assumes that nginx sees your WP installation at `/`. If this is not the case, you may have to adjust these paths.
 
 *Performance note*: This modification will force all Doc Attachment downloads to pass through WordPress, instead of being served by nginx, even if the associated Doc is public. On very high-traffic sites, this could cause performance issues. If you do not have any non-public Docs, you may consider skipping the directive suggested above, and allowing nginx to serve all Docs Attachments directly.
+
+## IIS7
+
+IIS7 rewrite rules are controlled by a Web.config file, typically in your WordPress site root. To prevent direct access to Docs attachments, use a directive like the following:
+
+    <rule name="buddypress-docs-attachments">
+        <match url="^/wp-content/uploads/bp-attachments/([0-9]+)/(.*)$"/>
+            <conditions>
+	        <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="false"/>
+	    </conditions>
+        <action type="Redirect" url="?p={R:1}&bp-attachment={R:2}"/>
+    </rule>
+
+The specifics of the rule may vary depending on your configuration (whether you're running Multisite, etc).
+
+*Performance note*: This modification will force all Doc Attachment downloads to pass through WordPress, instead of being served by IIS, even if the associated Doc is public. On very high-traffic sites, this could cause performance issues. If you do not have any non-public Docs, you may consider skipping the directive suggested above, and allowing IIS to serve all Docs Attachments directly.
