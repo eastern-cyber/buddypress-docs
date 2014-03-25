@@ -6,7 +6,7 @@ BuddyPress Docs attempts to take additional steps to ensure that your Docs canno
 
 On Apache installations, BuddyPress Docs attempts to protect attachments on a doc-by-doc basis. This means that attachments to private Docs will be served through BuddyPress - ensuring proper authorization - while attachments to public Docs will be served directly by Apache - ensuring the lowest possible overhead.
 
-In order for BuddyPress Docs to protect attachments in this way, `AllowOverride` must allow for subdirectory-specific rewrites. The vast majority of WP installations will have this setting enabled by default. For more information, see <a href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache's documentation for `AllowOverride`</a>.
+In order for BuddyPress Docs to protect attachments in this way, `AllowOverride` must allow for subdirectory-specific rewrites. The vast majority of WP installations will have this setting enabled by default. Contact your host for details. For more information, see <a href="https://httpd.apache.org/docs/current/mod/core.html#allowoverride">Apache's documentation for `AllowOverride`</a>.
 
 ## nginx
 
